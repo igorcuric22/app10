@@ -10,6 +10,7 @@ const App = () => {
     const [song,setSong]=useState("");
     const [datax,setData]=useState();
     const [p,setP]=useState(false);
+    const [error,setError]=useState(null);
 
     const handleActors=(e)=>{
         setActors(e.target.value);
@@ -25,21 +26,36 @@ const App = () => {
         id=0;
         setP(true);
         setData(null);
+        setError(null);
 
         setTimeout(()=>{
         const url = `https://itunes.apple.com/search?term=${actors}&media=music&entity=${song}`;
 
         fetch(url)
-        .then(response=>response.json())
+        .then(//response=>response.json()
+        response=>{
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Something went wrong');
+      }
+        )
         .then(data=>{
             console.log(data);
             console.log(data.results);
-            setData(data.results);
+            setData(data);
             setP(false);
 
         
         }
-        );
+        )
+        .catch(err=>{
+          console.log("===",err);
+          console.log("===",err.message);
+          setP(false);
+          setError(err.message);
+
+        });
 
     },2000)
     
@@ -72,7 +88,7 @@ const App = () => {
               <table className="tabla1">
                 <thead>
                 
-                </thead><tbody>{datax.map(item=>{
+                </thead><tbody>{datax.results.map(item=>{
             return(
             <tr key={id++}>
                 <td>{item.artistName}</td>
@@ -86,7 +102,8 @@ const App = () => {
 
         }
 
-    
+        {datax && datax.resultCount===0 && (<div>Nije pronaden</div>)}
+        {error && (<div>{error}</div>)}
  
   
       </div>
