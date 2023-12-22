@@ -9,6 +9,7 @@ const App = () => {
     const [actors,setActors]=useState("");
     const [song,setSong]=useState("");
     const [datax,setData]=useState();
+    const [p,setP]=useState(false);
 
     const handleActors=(e)=>{
         setActors(e.target.value);
@@ -22,6 +23,9 @@ const App = () => {
         console.log(`${song} ${actors}`)
 
         id=0;
+        setP(true);
+        setData(null);
+
         setTimeout(()=>{
         const url = `https://itunes.apple.com/search?term=${actors}&media=music&entity=${song}`;
 
@@ -31,6 +35,7 @@ const App = () => {
             console.log(data);
             console.log(data.results);
             setData(data.results);
+            setP(false);
 
         
         }
@@ -63,10 +68,8 @@ const App = () => {
     <button onClick={loadApi} >Stisni</button>
     </div>
     
-   {datax && 
-        (datax.length!==0?(
-            <div className="tablex">
-             <table className="tabla1">
+   {datax?(
+              <table className="tabla1">
                 <thead>
                 
                 </thead><tbody>{datax.map(item=>{
@@ -79,7 +82,7 @@ const App = () => {
             </tr>);
         }
 
-        )}</tbody></table> </div>):(<div>Nema rezultata</div>))
+        )}</tbody></table>):(p && <div className='loading'></div>)
 
         }
 

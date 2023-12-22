@@ -1,3 +1,62 @@
-.App {
+* {
+  box-sizing: border-box;
+  margin:0px;
+  padding:0px;
+  
+}
+
+h2 {
   text-align: center;
 }
+
+
+div.forma
+{
+    margin:1em auto;
+    text-align: center;
+    width:60%; 
+}
+
+button,label,input {
+  font-size: 1.1em;
+}
+
+table.tabla1 {
+  /* border-collapse: collapse; */
+  /* border:1px solid #ccc; */
+  width: 100%;
+  
+}
+
+table.tabla1,table.tabla1 th,table.tabla1 td{
+  border:1px solid #ccc;
+}
+
+table.tabla1 th, table.tabla1 td {
+  text-align: left;
+  padding: 8px;
+  font-size:1.2em;
+}
+
+table.tabla1 tr:nth-child(even) {background-color: #f2f2f2;}
+
+.loading {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #FFF;
+  border-bottom-color: #FF3D00;
+  border-radius: 50%;
+  display: block;
+  box-sizing: border-box;
+  margin:10px auto;
+  animation: rotation 1s linear infinite;
+  }
+
+  @keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+  } 
