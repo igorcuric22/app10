@@ -6,8 +6,8 @@ let id;
 
 const App = () => {
   
-    const [actors,setActors]=useState("");
-    const [song,setSong]=useState("");
+    const [actors,setActors]=useState("Igor");
+    const [song,setSong]=useState("song");
     const [datax,setData]=useState();
     const [p,setP]=useState(false);
     const [error,setError]=useState(null);
